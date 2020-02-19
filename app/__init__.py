@@ -12,7 +12,6 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
 gl = Gitlab('https://gitlab.com/', private_token='wCEQb-AehMpAzgys9myR')
 
 from app import routes, models
