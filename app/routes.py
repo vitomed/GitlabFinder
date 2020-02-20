@@ -1,7 +1,8 @@
 from flask import jsonify, render_template, request, redirect, url_for
 from gitlab.exceptions import GitlabSearchError
+
 from app import app, db, gl
-from .application import Storage
+from app.worker import Worker
 
 
 @app.route('/', methods=["GET"])
@@ -26,14 +27,14 @@ def send():
             response = gl.search('projects', row)
         except GitlabSearchError as exp:
             raise GitlabSearchError("Проблемы при обращении к API Gitlab:", exp)
-        res = Storage.commit(response)
+        res = Worker.commit(response)
         return redirect(url_for('base', data=res)), 301
     return redirect(url_for('base', data="You send empty row!")), 301
 
 
 @app.route('/projects/', methods=["GET"])
-def get_storage():
-    response = Storage.get_data()
+def get_porjects():
+    response = Worker.view_projects()
     return jsonify(response), 200
 
 

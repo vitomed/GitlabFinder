@@ -1,28 +1,34 @@
-import logging
 import os
+import logging
+from logging.handlers import RotatingFileHandler
 
-from config import ConfigApp
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from gitlab import Gitlab
-from logging.handlers import RotatingFileHandler
+
+from config import ConfigApp
+
+db = SQLAlchemy()
+gl = Gitlab('https://gitlab.com/', private_token='mpFQR4rh6EsP4UyP1wMK')
 
 
 def create_app(config: object):
     app = Flask(__name__)
     app.config.from_object(config)
+
+    from app.models import db
+    db.init_app(app)
     return app
 
 
 app = create_app(ConfigApp)
-db = SQLAlchemy(app)
+db.create_all(app=app)
+
 # migrate = Migrate(app, db)
-gl = Gitlab('https://gitlab.com/', private_token='mpFQR4rh6EsP4UyP1wMK')
 
-from app import routes, models
+from app import routes
 
-db.create_all()
+
 if not app.debug:
 
     if not os.path.exists('log'):

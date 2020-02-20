@@ -1,9 +1,10 @@
 from typing import List
+
 from app import db
 from app.models import Projects
 
 
-class Storage:
+class Worker:
 
     @classmethod
     def commit(cls, dictionaries: List) -> str:
@@ -30,7 +31,7 @@ class Storage:
         return f"{len(identity)} new repositories added" if identity else "Added nothing repositories!"
 
     @classmethod
-    def get_data(cls):
+    def view_projects(cls) -> List:
         columns = Projects.metadata.tables["projects"].columns.keys()
 
         projects = db.session.query(Projects.project_id,
