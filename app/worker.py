@@ -1,7 +1,7 @@
 from typing import List
 
 from app import db
-from app.models import Projects
+from app.models import Project
 
 
 class Worker:
@@ -17,10 +17,10 @@ class Worker:
                 last_activity = dct["last_activity_at"]
             except KeyError as exc:
                 raise KeyError("Неверный ключ", exc)
-            if db.session.query(Projects).get(project_id):
+            if db.session.query(Project).get(project_id):
                 continue
             else:
-                p = Projects(project_id=project_id, description=description,
+                p = Project(project_id=project_id, description=description,
                                    name=name, last_activity=last_activity)
                 projects.append(p)
 
@@ -32,13 +32,13 @@ class Worker:
 
     @classmethod
     def view_projects(cls) -> List:
-        columns = Projects.metadata.tables["projects"].columns.keys()
+        columns = Project.metadata.tables["project"].columns.keys()
 
-        projects = db.session.query(Projects.project_id,
-                                    Projects.description,
-                                    Projects.name,
-                                    Projects.last_activity,
-                                    Projects.created_at).all()
+        projects = db.session.query(Project.project_id,
+                                    Project.description,
+                                    Project.name,
+                                    Project.last_activity,
+                                    Project.created_at).all()
 
         response = [dict(zip(columns, lst)) for lst in projects]
 

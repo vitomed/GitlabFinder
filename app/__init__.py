@@ -10,6 +10,7 @@ from config import ConfigApp
 
 db = SQLAlchemy()
 gl = Gitlab('https://gitlab.com/', private_token='mpFQR4rh6EsP4UyP1wMK')
+# migrate = Migrate(app, db)
 
 
 def create_app(config: object):
@@ -24,9 +25,7 @@ def create_app(config: object):
 app = create_app(ConfigApp)
 db.create_all(app=app)
 
-# migrate = Migrate(app, db)
-
-from app import routes
+from . import routes
 
 
 if not app.debug:
