@@ -1,3 +1,5 @@
+from typing import List
+from sqlalchemy.exc import IntegrityError
 from app import db
 from app.models import Projects
 
@@ -5,24 +7,23 @@ from app.models import Projects
 class Storage:
 
     @classmethod
-    def commit(cls, response):
-
-        for element in response:
-
-            project_id = element["id"]
-            name = element["name"]
-            description = element["description"]
-            last_activity = element["last_activity_at"]
-
+    def commit(cls, dictionaries) -> str:
+        for dct in dictionaries:
+            try:
+                project_id = dct["id"]
+                name = dct["name"]
+                description = dct["description"]
+                last_activity = dct["last_activity_at"]
+            except KeyError as exc:
+                raise KeyError("Неверный ключ", exc)
             if db.session.query(Projects).get(project_id):
                 continue
             else:
                 project = Projects(project_id=project_id, description=description,
                                    name=name, last_activity=last_activity)
                 db.session.add(project)
-
-            db.session.commit()
-
+        db.session.commit()
+        # print(db.session.new)
         return "Ok"
 
     @classmethod

@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.css">
+<style>
+    body{
+        background-image: url({{ url_for('static', filename='fon.jpg') }});
+        background-size: cover;
+    }
+</style>
+<div>
+  <div>
+    {% if title %}
+    <title>{{title}} - Gitlab search engine</title>
+    {% else %}
+        <title>Search engine</title>
+    {% endif %}
+  </div>
+  <div>
+    {% block content %}{% endblock %}
+  </div>
+</div>
