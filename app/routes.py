@@ -4,12 +4,12 @@ from app import app, db, gl
 from .application import Storage
 
 
-@app.route('/base', methods=["GET"])
-def base():
-    return render_template("base.html"), 200
-
-
 @app.route('/', methods=["GET"])
+def base():
+    data = request.args.get('data', '')
+    return render_template("base.html", data=data), 200
+
+
 @app.route('/search/', methods=['POST', 'GET'])
 def search():
     if request.method == "POST":
@@ -18,19 +18,20 @@ def search():
     return render_template("form.html"), 200
 
 
-@app.route('/projects/')
+@app.route('/send/')
 def send():
     row = request.args.get('search', '')
     if row:
         try:
             response = gl.search('projects', row)
-        except GitlabSearchError as err:
-            raise GitlabSearchError("Проблемы при обращении к API Gitlab")
+        except GitlabSearchError as exp:
+            raise GitlabSearchError("Проблемы при обращении к API Gitlab:", exp)
         res = Storage.commit(response)
-        return res, 200
+        return redirect(url_for('base', data=res)), 301
+    return redirect(url_for('base', data="You send empty row!")), 301
 
 
-@app.route('/storage/', methods=["GET"])
+@app.route('/projects/', methods=["GET"])
 def get_storage():
     response = Storage.get_data()
     return jsonify(response), 200

@@ -1,6 +1,6 @@
 import os
 import unittest
-
+import tempfile
 from config import basedir
 from app import app, db
 from app.models import Projects
@@ -8,6 +8,7 @@ from app.models import Projects
 
 class TestCase(unittest.TestCase):
     def setUp(self):
+        self.db_fd, app.config['DATABASE'] = tempfile.mkstemp()
         app.config['TESTING'] = True
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'projects.db')
         self.app = app.test_client()

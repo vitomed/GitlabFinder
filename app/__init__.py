@@ -16,6 +16,7 @@ gl = Gitlab('https://gitlab.com/', private_token='mpFQR4rh6EsP4UyP1wMK')
 
 from app import routes, models
 
+db.create_all()
 if not app.debug:
 
     if not os.path.exists('log'):

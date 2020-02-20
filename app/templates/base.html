@@ -13,6 +13,18 @@
         <title>Search engine</title>
     {% endif %}
   </div>
+  <nav>
+    <div class="nav-wrapper #795548 brown">
+      <a href="#" class="brand-logo center">Base</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/search/">Search</a></li>
+        <li><a href="/projects/">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div>
+    <h3>{{data}}</h3>
+  </div>
   <div>
     {% block content %}{% endblock %}
   </div>

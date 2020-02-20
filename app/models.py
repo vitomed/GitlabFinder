@@ -12,5 +12,3 @@ class Projects(db.Model):
     def __repr__(self):
         return f"{self.project_id}, {self.description}, {self.name}, {self.last_activity}, {self.created_at}"
 
-
-db.create_all()

@@ -1,5 +1,4 @@
 from typing import List
-from sqlalchemy.exc import IntegrityError
 from app import db
 from app.models import Projects
 
@@ -7,7 +6,8 @@ from app.models import Projects
 class Storage:
 
     @classmethod
-    def commit(cls, dictionaries) -> str:
+    def commit(cls, dictionaries: List) -> str:
+        projects = []
         for dct in dictionaries:
             try:
                 project_id = dct["id"]
@@ -19,12 +19,15 @@ class Storage:
             if db.session.query(Projects).get(project_id):
                 continue
             else:
-                project = Projects(project_id=project_id, description=description,
+                p = Projects(project_id=project_id, description=description,
                                    name=name, last_activity=last_activity)
-                db.session.add(project)
+                projects.append(p)
+
+        db.session.add_all(projects)
+        identity = db.session.new
         db.session.commit()
-        # print(db.session.new)
-        return "Ok"
+
+        return f"{len(identity)} new repositories added" if identity else "Added nothing repositories!"
 
     @classmethod
     def get_data(cls):
