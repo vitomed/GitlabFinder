@@ -1,7 +1,5 @@
-import pytest
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-pytest_plugins = ['db_fixtures']
-
-@pytest.fixture
-def fixture_a():
-    return "value"
+pytest_plugins = ['test_pytest']

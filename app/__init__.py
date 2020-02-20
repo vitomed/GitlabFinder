@@ -1,17 +1,23 @@
 import logging
 import os
 
-from config import Config
+from config import ConfigApp
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from gitlab import Gitlab
 from logging.handlers import RotatingFileHandler
 
-app = Flask(__name__)
-app.config.from_object(Config)
+
+def create_app(config: object):
+    app = Flask(__name__)
+    app.config.from_object(config)
+    return app
+
+
+app = create_app(ConfigApp)
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+# migrate = Migrate(app, db)
 gl = Gitlab('https://gitlab.com/', private_token='mpFQR4rh6EsP4UyP1wMK')
 
 from app import routes, models
