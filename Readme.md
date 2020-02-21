@@ -16,8 +16,8 @@ Gitlab поисковик проектов
 	    models.py	
 	    routes.py
 	    worker.py
-	   /static
-	   /templates
+	    /static
+	    /templates
 	      404.html
 	      500.html
 	      base.html
@@ -32,8 +32,13 @@ Gitlab поисковик проектов
 
 ### Как запустить:
 
+	(env) my_project/$ python3 main.py
+	
+	или
+	
+	(env) my_project/$ export FLASK_APP=main.py
+	(env) my_project/$ flask run
 
-	user@:~/my_project/$ python3 main.py
 
 
 ### Рабочeе API:
@@ -47,7 +52,12 @@ Gitlab поисковик проектов
 
 ### Запуск тестов:
 
-	user@:~/my_project/$ python3 -m pytest tests/test_application.py
+	(env) my_project/$ python3 -m pytest tests/test_application.py
+	
+	или
+
+	(env) my_project/$ py.test
+
 
 ### Ключевые модули Python используемые в проекте
 
