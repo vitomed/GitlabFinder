@@ -2,9 +2,8 @@ Gitlab поисковик проектов
 ========
 
 
-* Структура проекта:
+### Структура проекта:
 
-	```
 	my_project/
 	  config.py
 	  Dockerfile
@@ -29,22 +28,23 @@ Gitlab поисковик проектов
 	    connftest.py
 	    test_application.py
 	    /log
-	```
+	
 
-* Запустить проект:
-
-	```user@:~/my_project/$ python3 main.py```
+### Как запустить:
 
 
-* Рабочие API:
-
-	```http://localhost:5000/``` - начальная страница
-
-	```http://localhost:5000/search/``` - поиск проектов
-
-	```http://localhost:5000/projects/``` - JSON, содержащий искомые проекты, полученные из локальной БД.
+	user@:~/my_project/$ python3 main.py
 
 
-* Запуск тестов:
+### Рабочeе API:
 
-	```user@:~/my_project/$ python3 -m pytest tests/test_application.py``` 
+	http://localhost:5000/ - начальная страница
+
+	http://localhost:5000/search/ - поиск проектов
+
+	http://localhost:5000/projects/ - JSON, содержащий искомые проекты, полученные из локальной БД.
+
+
+### Запуск тестов:
+
+	user@:~/my_project/$ python3 -m pytest tests/test_application.py
