@@ -27,7 +27,7 @@ def send_name():
             response = gl.search('projects', row)
         except GitlabSearchError as exp:
             raise GitlabSearchError("Проблемы при обращении к API Gitlab:", exp)
-        res = Worker.commit(response)
+        res = Worker.send(response)
         return redirect(url_for('base', data=res)), 301
     return redirect(url_for('base', data="You send empty row!")), 301
 

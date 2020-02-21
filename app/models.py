@@ -4,6 +4,7 @@ from app import db
 
 
 class Project(db.Model):
+    
     project_id = db.Column(db.Integer, primary_key=True, unique=True)
     description = db.Column(db.String(120), nullable=True)
     name = db.Column(db.String(50), nullable=False)
