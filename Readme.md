@@ -27,7 +27,7 @@ Gitlab поисковик проектов
 	  /tests
 	    connftest.py
 	    test_application.py
-	    /log
+	    
 	
 
 ### Как запустить:
@@ -48,3 +48,21 @@ Gitlab поисковик проектов
 ### Запуск тестов:
 
 	user@:~/my_project/$ python3 -m pytest tests/test_application.py
+
+### Ключевые модули Python используемые в проекте
+
+[Flask](https://flask.palletsprojects.com/en/1.1.x/) - micro-framework for web application development
+
+[Jinga2](https://jinja.palletsprojects.com/en/2.11.x/) - templating engine
+
+[SQLAlchemy](https://www.sqlalchemy.org/) - ORM (Object Relational Mapper)
+
+[Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) - is an extension for Flask that adds support for SQLAlchemy 
+to your application.
+
+[Testing Flask Applications using pytest](https://flask.palletsprojects.com/en/1.1.x/testing/) -  pytest - framework for write complex functional testing.
+
+[Search API from python-gitlab library](https://python-gitlab.readthedocs.io/en/stable/gl_objects/search.html) - python-gitlab library provides simple API for gitlab
+
+
+В проекте использовалась версия интерпретатора Python 3.7.
