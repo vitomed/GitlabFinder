@@ -2,8 +2,9 @@ Gitlab поисковик проектов
 ========
 
 
-### Структура проекта:
-
+Структура проекта
+---
+```
 	my_project/
 	  config.py
 	  Dockerfile
@@ -26,11 +27,11 @@ Gitlab поисковик проектов
 	  /log
 	  /tests
 	    connftest.py
-	    test_application.py
-	    
-	
+	    test_application.py	    
+```	
 
-### Как запустить:
+Как запустить
+---
 
 	(env) my_project/$ python3 main.py
 	
@@ -40,8 +41,8 @@ Gitlab поисковик проектов
 	(env) my_project/$ flask run
 
 
-
-### Рабочeе API:
+Рабочeе API
+---
 
 	http://localhost:5000/ - начальная страница
 
@@ -50,29 +51,28 @@ Gitlab поисковик проектов
 	http://localhost:5000/projects/ - JSON, содержащий искомые проекты, полученные из локальной БД.
 
 
-### Запуск тестов:
-
+Запуск тестов
+---
 	(env) my_project/$ python3 -m pytest tests/test_application.py
 	
 	или
 
 	(env) my_project/$ py.test
 
+Ключевые модули Python используемые в проекте
+---
 
-### Ключевые модули Python используемые в проекте
++ [Flask](https://flask.palletsprojects.com/en/1.1.x/) - micro-framework for web application development
 
-[Flask](https://flask.palletsprojects.com/en/1.1.x/) - micro-framework for web application development
++ [Jinga2](https://jinja.palletsprojects.com/en/2.11.x/) - templating engine
 
-[Jinga2](https://jinja.palletsprojects.com/en/2.11.x/) - templating engine
++ [SQLAlchemy](https://www.sqlalchemy.org/) - ORM (Object Relational Mapper)
 
-[SQLAlchemy](https://www.sqlalchemy.org/) - ORM (Object Relational Mapper)
++ [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) - is an extension for Flask that adds support for SQLAlchemy to your application.
 
-[Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) - is an extension for Flask that adds support for SQLAlchemy 
-to your application.
++ [Testing Flask Applications using pytest](https://flask.palletsprojects.com/en/1.1.x/testing/) -  pytest - framework for write complex functional testing.
 
-[Testing Flask Applications using pytest](https://flask.palletsprojects.com/en/1.1.x/testing/) -  pytest - framework for write complex functional testing.
-
-[Search API from python-gitlab library](https://python-gitlab.readthedocs.io/en/stable/gl_objects/search.html) - python-gitlab library provides simple API for gitlab
++ [Search API from python-gitlab library](https://python-gitlab.readthedocs.io/en/stable/gl_objects/search.html) - python-gitlab library provides simple API for gitlab
 
 
 В проекте использовалась версия интерпретатора Python 3.7.
