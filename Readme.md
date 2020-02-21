@@ -27,7 +27,7 @@ Gitlab поисковик проектов
 	  /log
 	  /tests
 	    connftest.py
-	    test_pytest.py
+	    test_application.py
 	    /log
 	```
 
@@ -47,4 +47,4 @@ Gitlab поисковик проектов
 
 * Запуск тестов:
 
-	```user@:~/my_project/$ python3 -m pytest tests/test_pytest.py``` 
+	```user@:~/my_project/$ python3 -m pytest tests/test_application.py``` 
