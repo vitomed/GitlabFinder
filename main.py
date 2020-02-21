@@ -2,9 +2,10 @@ import os
 import logging
 from logging.handlers import RotatingFileHandler
 
-from config import ConfigApp
-from app.routes import app
 from app.models import db
+from app.routes import app
+from config import ConfigApp
+
 
 app.config.from_object(ConfigApp)
 db.init_app(app)

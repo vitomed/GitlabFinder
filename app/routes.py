@@ -8,19 +8,19 @@ from app.worker import Worker
 @app.route('/', methods=["GET"])
 def base():
     data = request.args.get('data', '')
-    return render_template("base.html", data=data), 200
+    return render_template('base.html', data=data), 200
 
 
 @app.route('/search/', methods=['POST', 'GET'])
-def search():
-    if request.method == "POST":
-        row = request.form.get("row")
-        return redirect(url_for('send', search=row)), 301
-    return render_template("form.html"), 200
+def search_project():
+    if request.method == 'POST':
+        row = request.form.get('row')
+        return redirect(url_for('send_name', search=row)), 301
+    return render_template('form.html'), 200
 
 
 @app.route('/send/')
-def send():
+def send_name():
     row = request.args.get('search', '')
     if row:
         try:
