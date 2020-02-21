@@ -21,14 +21,17 @@ class Worker:
                 continue
             else:
                 p = Project(project_id=project_id, description=description,
-                                   name=name, last_activity=last_activity)
+                            name=name, last_activity=last_activity)
                 projects.append(p)
 
         db.session.add_all(projects)
         identity = db.session.new
         db.session.commit()
 
-        return f"{len(identity)} new repositories added" if identity else "Added nothing repositories!"
+        resp = f"{len(identity)} new repositories added" \
+            if identity else "Added nothing repositories!"
+
+        return resp
 
     @classmethod
     def view_projects(cls) -> List:

@@ -10,5 +10,8 @@ class Project(db.Model):
     created_at = db.Column(db.DateTime(), default=datetime.now)
 
     def __repr__(self):
-        return f"{self.project_id}, {self.description}, {self.name}, {self.last_activity}, {self.created_at}"
+
+        return f"""{self.project_id}, {self.description},
+
+                   {self.name}, {self.last_activity}, {self.created_at}"""
 
