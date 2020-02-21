@@ -6,27 +6,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from gitlab import Gitlab
 
-from config import ConfigApp
 
+app = Flask(__name__)
 db = SQLAlchemy()
 gl = Gitlab('https://gitlab.com/', private_token='mpFQR4rh6EsP4UyP1wMK')
 # migrate = Migrate(app, db)
-
-
-def create_app(config: object):
-    app = Flask(__name__)
-    app.config.from_object(config)
-
-    from app.models import db
-    db.init_app(app)
-    return app
-
-
-app = create_app(ConfigApp)
-db.create_all(app=app)
-
-from . import routes
-
 
 if not app.debug:
 
