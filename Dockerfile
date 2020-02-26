@@ -1,21 +1,16 @@
 # docker build 
-FROM ubuntu:16.04
 
-FROM python:3.7
-
-RUN apt-get update
-
-EXPOSE 5000
+FROM python:3.7-alpine
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
+RUN pip install -r requiremens.txt
 
-RUN pip install -r requirements.txt
+ADD main.py ./
 
-COPY maint.py /app
+EXPOSE 5000
 
-CMD python main.py
+CMD ['python3', 'main.py']
 
 
 
