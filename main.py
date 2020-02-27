@@ -26,4 +26,4 @@ if not app.config["TESTING"]:
     app.logger.setLevel(logging.INFO)
     app.logger.info('Gitlab API project startup')
 
-app.run(host='localhost', port=5000)
+app.run(host='0.0.0.0', port=5023)

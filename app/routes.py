@@ -1,5 +1,5 @@
 from flask import jsonify, render_template, request, redirect, url_for
-from gitlab.exceptions import GitlabSearchError
+from gitlab.exceptions import GitlabAuthenticationError, GitlabSearchError
 
 from app import app, db, gl
 from app.worker import Worker
@@ -27,6 +27,8 @@ def send_name():
             response = gl.search('projects', row)
         except GitlabSearchError as exp:
             raise GitlabSearchError("Проблемы при обращении к API Gitlab:", exp)
+        except GitlabAuthenticationError:
+            return "<h1>Истек период действия ключа!</h1>"
         res = Worker.send(response)
         return redirect(url_for('base', data=res)), 301
     return redirect(url_for('base', data="You send empty row!")), 301

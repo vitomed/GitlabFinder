@@ -2,15 +2,25 @@
 
 FROM python:3.7-alpine
 
+LABEL maintainer='viktor.medyankin@mail.ru'
+
+#RUN apk update && apk upgrade && apk add bash
+
 WORKDIR /app
 
-RUN pip install -r requiremens.txt
+#COPY requirements.txt /bin/
 
-ADD main.py ./
+COPY . /app 
+
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
-CMD ['python3', 'main.py']
+ENTRYPOINT ["python"]
+
+CMD ["main.py"]
+
+#CMD ["python", "/app/main.py"]
 
 
 
